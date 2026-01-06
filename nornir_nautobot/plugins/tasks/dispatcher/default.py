@@ -32,7 +32,6 @@ from nornir_netmiko.tasks import (
     netmiko_send_config,
 )
 from nornir_scrapli.tasks import send_command as scrapli_send_command
-from remote_pdb import RemotePdb
 
 from nornir_nautobot.constants import EXCEPTION_TO_ERROR_MAPPER
 from nornir_nautobot.exceptions import NornirNautobotException
@@ -1297,7 +1296,6 @@ class ApiDefault(DispatcherMixin, ConnectionMixin, ABC):
             )
             if isinstance(payload, dict):
                 payload_copy = payload.copy()
-                RemotePdb("127.0.0.1", 4444).set_trace()
                 response: Any = cls.return_response_content(
                     session=cls.session,
                     method=endpoint["method"],
