@@ -1297,6 +1297,7 @@ class ApiDefault(DispatcherMixin, ConnectionMixin, ABC):
             )
             if isinstance(payload, dict):
                 payload_copy = payload.copy()
+                RemotePdb("127.0.0.1", 4444).set_trace()
                 response: Any = cls.return_response_content(
                     session=cls.session,
                     method=endpoint["method"],
@@ -1360,7 +1361,6 @@ class ApiDefault(DispatcherMixin, ConnectionMixin, ABC):
         Raises:
             ValueError: If controller endpoints cannot be found in the config context.
         """
-        RemotePdb("127.0.0.1", 4444).set_trace()
         if isinstance(config, str):
             config: dict[Any, Any] = json.loads(config)
         logger.info(
